@@ -1,137 +1,185 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bedosnowy</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uzay Teması</title>
+  <style>
+    /* Genel Ayarlar */
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000; /* Siyah arka plan */
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Arial', sans-serif;
+    }
 
-    <style>
-        /* Genel Stil ve Konumlandırma */
-        body {
-            background-color: #000000;
-            background-image: radial-gradient(circle at 20% 20%, rgba(127, 127, 255, 0.4) 3px, transparent 5px),
-                              radial-gradient(circle at 80% 80%, rgba(127, 127, 255, 0.4) 3px, transparent 5px),
-                              radial-gradient(circle at 50% 50%, rgba(127, 127, 255, 0.4) 3px, transparent 5px),
-                              radial-gradient(circle at 30% 70%, rgba(127, 127, 255, 0.4) 3px, transparent 5px);
-            background-size: 100px 100px;
-            color: #d1d1d1;
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow: auto;
-            transition: all 0.3s ease;
-        }
+    /* Yıldız Efekti */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        /* Başlık Düzenlemeleri */
-        h1 {
-            font-family: 'Orbitron', cursive;
-            color: #a0d3ff;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 3rem;
-            text-shadow: 0 0 20px rgba(30, 144, 255, 0.7), 0 0 30px rgba(30, 144, 255, 0.5);
-            animation: glow 1.5s ease-in-out infinite alternate;
-            transition: all 0.3s ease;
-        }
+    .stars div {
+      position: absolute;
+      background-color: #fff;
+      width: 3px;
+      height: 3px;
+      animation: twinkle 6s infinite ease-in-out;
+    }
 
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 20px rgba(30, 144, 255, 0.7), 0 0 30px rgba(30, 144, 255, 0.5);
-            }
-            100% {
-                text-shadow: 0 0 40px rgba(30, 144, 255, 1), 0 0 60px rgba(30, 144, 255, 0.8);
-            }
-        }
+    @keyframes twinkle {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
 
-        /* Bölüm Konumlandırması */
-        .section {
-            background: rgba(0, 0, 51, 0.7);
-            border: 2px solid #1e90ff;
-            padding: 20px;
-            margin: 20px 0;
-            width: 80%;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
-            max-width: 800px;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
+    /* $ bedosnowy Yazısı */
+    .intro {
+      color: #fff;
+      text-align: center;
+      animation: fadeIn 3s ease-in-out forwards;
+      z-index: 1;
+    }
 
-        /* Mobil Düzenlemeler */
-        @media (max-width: 768px) {
-            body {
-                align-items: flex-start;
-                padding: 20px;
-            }
+    .intro h1 {
+      font-size: 3rem;
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
 
-            h1 {
-                font-size: 2.5em;
-            }
+    /* Fade-in Efekti */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-            .section {
-                width: 100%;
-                padding: 15px;
-            }
-        }
-    </style>
+    /* Siteye Giriş Butonu */
+    .enter-button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: #fff;
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      z-index: 1;
+    }
+
+    .enter-button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .enter-button:active {
+      background-color: #444;
+      color: #fff;
+    }
+
+    /* Animasyon */
+    .button-text-change {
+      animation: fadeText 5s forwards;
+    }
+
+    @keyframes fadeText {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <h1>bedo雪+y</h1>
-    
-    <!-- Hakkımda Bölümü -->
-    <section class="section">
-        <h2>🌙 Information about bedosnowy</h2>
-        <ul>
-            <li>I love watching anime, coding, and learning English</li>
-            <li>I am Turkish. I live in Istanbul but I love Izmir very much</li>
-            <li>I love summer and winter</li>
-            <li>I live with the ideal of a happy and peaceful world.☯️</li>
-            <li>I am currently studying at Avcılar Firüzkoy Multi-programmed Anatolian High School.</li>
-            <li>Come discord if you want <a href="https://discord.gg/DmSwsqDzCT">Buraya tıkla!</a></li>
-        </ul>
-    </section>
-    
-    <!-- Projelerim Bölümü -->
-    <section class="section">
-        <h2>📂 Projects</h2>
-        <ul>
-        <li>World clocks: <a href="clocks.html">Click Here!</a></li>
-        <li>FPS Warm-UP: <a href="game.html">Click Here!</a></li>
-        </ul>
-        <h2>💫 Friends github pages</h2>
-        <p>☆Baran: <a href="https://github.com/byoreo/">Buraya tıkla!</a></p>
-        <p>☆Berkay: <a href="">Buraya tıkla!</a></p>
-    </section>
-    
-    <!-- Blog Section -->
-    <section class="section">
-        <h2>📘 Blog</h2>
-        <div class="blog-container">
-            <article class="blog-card">
-                <h3>Check this if u want learn html</h3>
-                <a href="htmlogren.html">➤  Learn More</a>
-            </article>
-        </div>
-    </section>
-    
-    <!-- Duyurular Bölümü -->
-    <section class="section">
-        <h2>📢 Duyurular</h2>
-        <p id="announcementMessage">İlk duyuru mesajı burada görünecek!</p>
-    </section> 
-    
-    <!-- Chatbox -->
-    <section class="section">
-        <h2>💬 Chatbox</h2>
-        <p>Burada yazan mesajların hiçbiri bana ait değildir.</p>
-        <iframe src="https://www5.cbox.ws/box/?boxid=954137&boxtag=hlNxWC" width="100%" height="450" allowtransparency="yes" frameborder="0"></iframe> 
-    </section>
+  <!-- Yıldız Efekti -->
+  <div class="stars">
+    <div style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+    <div style="top: 30%; left: 50%; animation-delay: 1s;"></div>
+    <div style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+    <div style="top: 50%; left: 70%; animation-delay: 3s;"></div>
+    <div style="top: 80%; left: 30%; animation-delay: 4s;"></div>
+  </div>
+
+  <!-- $ bedosnowy Yazısı ve Kilit Butonu -->
+  <div class="intro">
+    <h1>$ bedosnowy</h1>
+    <!-- Kilidi açmak için buton -->
+    <button class="enter-button" id="lock-button" onclick="unlockSite()">🔒Site kilidini açmak için tıklayın🔒</button>
+    <!-- Siteye giriş butonu başlangıçta gizli olacak -->
+    <button class="enter-button" id="site-button" onclick="redirectToSite()" style="display: none;">⟡ Siteye Giriş ⟡</button>
+  </div>
+
+  <!-- Müzik -->
+  <audio id="background-music" loop>
+    <source src="Jingle Bells - The Soundlings.mp3" type="audio/mpeg">
+    Tarayıcınız ses dosyasını desteklemiyor.
+  </audio>
+
+  <script>
+    function unlockSite() {
+      const lockButton = document.getElementById('lock-button');
+      const siteButton = document.getElementById('site-button');
+      const music = document.getElementById('background-music');
+
+      // Müzik başlatılır
+      music.play(); 
+      console.log("Müzik çalmaya başladı!");
+
+      // Kilit açma butonunu gizle
+      lockButton.style.display = 'none';
+
+      // Siteye giriş butonunu göster
+      siteButton.style.display = 'inline-block';
+
+      // Buton metnini değiştir ve animasyon ekle
+      siteButton.textContent = '⟡ Siteye Giriş ⟡';
+      siteButton.classList.add('button-text-change');
+    }
+
+    function redirectToSite() {
+      const siteButton = document.getElementById('site-button');
+      // Butonun metnini değiştirme
+      siteButton.textContent = 'Siteye aktıralacaksınız...';
+      // 5 saniye sonra yönlendirme işlemi
+      setTimeout(() => {
+        window.location.href = 'anasayfa.html'; // Yönlendirme yapılır
+      }, 5000); // 5 saniye
+    }
+  </script>
 
 </body>
 </html>
