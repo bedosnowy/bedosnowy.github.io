@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bedosnowy</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Genel Stil ve Konumlandırma */
+        body {
+            background-color: #000000;
+            background-image: radial-gradient(circle at 20% 20%, rgba(127, 127, 255, 0.4) 3px, transparent 5px),
+                              radial-gradient(circle at 80% 80%, rgba(127, 127, 255, 0.4) 3px, transparent 5px),
+                              radial-gradient(circle at 50% 50%, rgba(127, 127, 255, 0.4) 3px, transparent 5px),
+                              radial-gradient(circle at 30% 70%, rgba(127, 127, 255, 0.4) 3px, transparent 5px);
+            background-size: 100px 100px;
+            color: #d1d1d1;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow: auto;
+            transition: all 0.3s ease;
+        }
+
+        /* Başlık Düzenlemeleri */
+        h1 {
+            font-family: 'Orbitron', cursive;
+            color: #a0d3ff;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 3rem;
+            text-shadow: 0 0 20px rgba(30, 144, 255, 0.7), 0 0 30px rgba(30, 144, 255, 0.5);
+            animation: glow 1.5s ease-in-out infinite alternate;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 20px rgba(30, 144, 255, 0.7), 0 0 30px rgba(30, 144, 255, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 40px rgba(30, 144, 255, 1), 0 0 60px rgba(30, 144, 255, 0.8);
+            }
+        }
+
+        /* Bölüm Konumlandırması */
+        .section {
+            background: rgba(0, 0, 51, 0.7);
+            border: 2px solid #1e90ff;
+            padding: 20px;
+            margin: 20px 0;
+            width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+            max-width: 800px;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        /* Mobil Düzenlemeler */
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .section {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>bedo雪+y</h1>
+    
+    <!-- Hakkımda Bölümü -->
+    <section class="section">
+        <h2>🌙 Information about bedosnowy</h2>
+        <ul>
+            <li>I love watching anime, coding, and learning English</li>
+            <li>I am Turkish. I live in Istanbul but I love Izmir very much</li>
+            <li>I love summer and winter</li>
+            <li>I live with the ideal of a happy and peaceful world.☯️</li>
+            <li>I am currently studying at Avcılar Firüzkoy Multi-programmed Anatolian High School.</li>
+            <li>Come discord if you want <a href="https://discord.gg/DmSwsqDzCT">Buraya tıkla!</a></li>
+        </ul>
+    </section>
+    
+    <!-- Projelerim Bölümü -->
+    <section class="section">
+        <h2>📂 Projects</h2>
+        <ul>
+        <li>World clocks: <a href="clocks.html">Click Here!</a></li>
+        <li>FPS Warm-UP: <a href="game.html">Click Here!</a></li>
+        </ul>
+        <h2>💫 Friends github pages</h2>
+        <p>☆Baran: <a href="https://github.com/byoreo/">Buraya tıkla!</a></p>
+        <p>☆Berkay: <a href="">Buraya tıkla!</a></p>
+    </section>
+    
+    <!-- Blog Section -->
+    <section class="section">
+        <h2>📘 Blog</h2>
+        <div class="blog-container">
+            <article class="blog-card">
+                <h3>Check this if u want learn html</h3>
+                <a href="htmlogren.html">➤  Learn More</a>
+            </article>
+        </div>
+    </section>
+    
+    <!-- Duyurular Bölümü -->
+    <section class="section">
+        <h2>📢 Duyurular</h2>
+        <p id="announcementMessage">İlk duyuru mesajı burada görünecek!</p>
+    </section> 
+    
+    <!-- Chatbox -->
+    <section class="section">
+        <h2>💬 Chatbox</h2>
+        <p>Burada yazan mesajların hiçbiri bana ait değildir.</p>
+        <iframe src="https://www5.cbox.ws/box/?boxid=954137&boxtag=hlNxWC" width="100%" height="450" allowtransparency="yes" frameborder="0"></iframe> 
+    </section>
+
+</body>
+</html>
