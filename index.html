@@ -1,399 +1,618 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BedoSnowy's Website🌙</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400&family=Lato:wght@300;400;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Bedo x Berk Anime Galerisi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Dark Mode Specific Styles */
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Custom Dark Mode Variables */
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
         :root {
-            --dark-bg-primary: #1e1e1e;
-            --dark-bg-secondary: #2c2c2c;
-            --dark-text-primary: #e0e0e0;
-            --dark-text-secondary: #b0b0b0;
-            --dark-accent: #bb86fc;
+            --background-color: #121420;
+            --card-color: #1B1A2A;
+            --accent-color: #9775fa;
+            --accent-color-alt: #7950f2;
+            --text-color: #f1f3f5;
+            --text-color-secondary: #adb5bd;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --overlay-color: rgba(18, 20, 32, 0.9);
+            --glow-color: rgba(151, 117, 250, 0.3);
+            --navbar-color: #1B1A2A;
+            --navbar-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --dropdown-bg: #262538;
+            --footer-bg: #0F0E1A;
         }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            position: relative;
-            height: 100vh;
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--navbar-color);
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: var(--navbar-shadow);
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            border-bottom: 1px solid rgba(151, 117, 250, 0.2);
+        }
+        
+        .navbar-left {
             display: flex;
             align-items: center;
+            gap: 5px;
+        }
+        
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding-right: 15px;
+        }
+        
+        .navbar-logo i {
+            font-size: 1.8rem;
+            color: var(--accent-color-alt);
+        }
+        
+        .navbar-divider {
+            height: 30px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--accent-color), transparent);
+            margin: 0 15px;
+        }
+        
+        .navbar-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .navbar-title h2 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--text-color);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .announcement-container {
+            height: 20px;
             overflow: hidden;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 1;
+        
+        .announcement {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin: 0;
+            opacity: 0.8;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
-        /* Card Styles */
-        .card {
-            background-color: var(--dark-bg-secondary);
+        
+        .announcement.fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        
+        .announcement.fade-in {
+            opacity: 0.8;
+            transform: translateY(0);
+        }
+        
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .home-nav-btn {
+            background-color: var(--accent-color);
             border: none;
-            color: var(--dark-text-primary);
+            color: var(--text-color);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(151, 117, 250, 0.3);
+            text-decoration: none;
         }
-
-        /* Blog Banner */
-        .blog-banner {
+        
+        .home-nav-btn i {
+            font-size: 1rem;
+        }
+        
+        .home-nav-btn:hover {
+            background-color: var(--accent-color-alt);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown {
             position: relative;
-            overflow: hidden;
+            display: inline-block;
         }
-
-        .blog-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
+        
+        .dropdown-toggle {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-
-        /* Social Icons */
-        .social-icons a {
-            color: var(--dark-accent);
-            font-size: 24px;
-            margin: 0 10px;
+        
+        .dropdown-toggle:hover {
+            background-color: rgba(151, 117, 250, 0.1);
+        }
+        
+        .dropdown-toggle i.caret {
+            font-size: 0.8rem;
             transition: transform 0.3s ease;
         }
-
-        .social-icons a:hover {
-            transform: scale(1.2);
-            color: white;
+        
+        .dropdown-toggle.active i.caret {
+            transform: rotate(180deg);
         }
-
-        /* Navbar */
-        .navbar {
-            background-color: var(--dark-bg-primary) !important;
-        }
-
-        /* Particles Background */
-        #particles-js {
+        
+        .dropdown-menu {
             position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--dropdown-bg);
+            min-width: 180px;
+            border-radius: 10px;
+            padding: 10px 0;
+            margin-top: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            padding: 10px 20px;
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-align: left;
+            background: none;
+            border: none;
             width: 100%;
-            height: 100%;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(151, 117, 250, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 8px 0;
+        }
+        
+        .dropdown-header {
+            padding: 10px 20px;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+        
+        /* Star background styles */
+        .stars-container {
+            position: fixed;
             top: 0;
             left: 0;
-            z-index: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--duration) infinite;
+            animation-delay: var(--delay);
+        }
+        
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* Hero section styles */
+        .hero-section {
+            height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .welcome-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-shadow: 0 0 10px rgba(151, 117, 250, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .welcome-subtext {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--text-color-secondary);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-color-alt);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button i {
+            font-size: 1.2rem;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        footer {
+            text-align: center;
+            padding: 30px;
+            position: relative;
         }
-
-        .floating-element {
-            animation: float 4s ease-in-out infinite;
+        
+        footer p {
+            font-size: 1rem;
+            color: var(--text-color-secondary);
+            font-weight: 300;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">BedoSnowy Website</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Hızlı Bloglar
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Web Development</a></li>
-                            <li><a class="dropdown-item" href="#">AI & Machine Learning</a></li>
-                            <li><a class="dropdown-item" href="#">Cloud Computing</a></li>
-                            <li><a class="dropdown-item" href="#">Cybersecurity</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Programcılık
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">JavaScript</a></li>
-                            <li><a class="dropdown-item" href="#">Python</a></li>
-                            <li><a class="dropdown-item" href="#">React</a></li>
-                            <li><a class="dropdown-item" href="#">Node.js</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Hakkımda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                </ul>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="navbar-logo">
+                <i class="fas fa-paint-brush"></i>
+                <span>BxB</span>
+            </a>
+            <div class="navbar-divider"></div>
+            <div class="navbar-title">
+                <h2>Anime Galerisi</h2>
+                <div class="announcement-container">
+                    <p class="announcement" id="announcement">API ile Harika Anime Görselleri</p>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-links">
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="categoryDropdown">
+                    <i class="fas fa-tags"></i>
+                    Kategori
+                    <i class="fas fa-chevron-down caret"></i>
+                </button>
+                <div class="dropdown-menu" id="categoryMenu">
+                    <!-- Categories will be loaded here -->
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div id="particles-js"></div>
-        <div class="container hero-content text-center">
-            <h1 class="display-3 animate__animated animate__fadeInDown">
-                BedoSnowy
-            </h1>
-            <p class="lead animate__animated animate__fadeInUp">
-                Noobest Developer ever🔥 | Blog Writer | Snowy Owner🌺
-            </p>
-        </div>
-    </section>
+    <div class="stars-container" id="starsContainer">
+        <!-- Stars will be generated via JS -->
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <img src="https://cdn.discordapp.com/attachments/1232790006506979362/1326533399950659694/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy_1.jpg?ex=677fc600&is=677e7480&hm=e921564441479db8e6409fad0a054bab0fe2f859cda26bb4436962c0e4d5c407&" alt="Profile">
-                </div>
-                <div class="col-md-6">
-                    <h2 style="color: #e0e0e0;">About Me 📃</h2>
-                    <p style="color: #b0b0b0;">
-                        Hello! 👋
-                        I am BedoSnowy, I am someone who works determinedly to make my dreams come true. I live in Istanbul and my love for Izmir is always in my heart. The focus of my life is to constantly learn, improve and discover my own potential.
-                        
-                        Watching anime, writing code and developing creative projects are my biggest passions. I am currently focusing on web development. In this journey that I started from scratch, I am creating my own biography-style website by learning technologies such as HTML, CSS and JavaScript. I am also developing a Discord bot and designing a hand warming game for FPS players.
-                        
-                        I like to combine retro gaming aesthetics, modern details and a minimalist approach in design. I often use dark themes, retro fonts and soft color transitions in my web projects. I am learning English and improving my coding skills every day to improve myself.
-                        
-                        My goal is not only to develop my own projects but also to inspire others. That is why I work tirelessly to expand both my technical skills and my artistic vision. I do not like to put limits on my creativity; I am always looking for bigger, more original ideas.
-                        
-                        The curiosity and passion inside me always lead me to learn new things. I am inspired by cultural, scientific and artistic fields. While working in the dynamic atmosphere of Istanbul, I dream of the peaceful atmosphere of Izmir.
-                        
-                        If you are interested in my projects, would like to chat or exchange ideas, do not hesitate to contact me. Let's learn, develop and grow together!
-                    </p>
-                    <div class="social-icons">
-                        <a href="#" class="fab fa-facebook" style="text-decoration: none; color: #4267B2;"></a>
-                        <a href="#" class="fab fa-instagram" style="text-decoration: none; color: #C13584;"></a>
-                        <a href="#" class="fab fa-discord" style="text-decoration: none; color: #5865F2;"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-<section id="blog" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Latest Blog Posts</h2>
-        <div class="row">
-            <!-- Blog Post 1 -->
-            <div class="col-md-4 mb-4">
-                <div class="card blog-post">
-                    <div class="blog-banner" style="background-image: url('https://cdn.discordapp.com/attachments/1232790006506979362/1326532807270469653/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy.jpg?ex=67806e33&is=677f1cb3&hm=71681c422f9f30b0edddaff757b02887378a10b002ce3b0b9b8f5fba2ae8a0f3&'); height: 250px; background-size: cover; position: relative;">
-                        <div class="banner-overlay position-absolute w-100 h-100" style="background: rgba(0,0,0,0.5);"></div>
-                        <div class="banner-content position-absolute bottom-0 p-3 text-white w-100">
-                            <h5 class="mb-0">İlk Blog!</h5>
-                            <small>09/01/2025</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">İlk blogu buradan okuyabilirsiniz!</p>
-                        <a href="blog1.html" class="btn btn-primary">Devamını Oku</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Post 2 -->
-            <div class="col-md-4 mb-4">
-                <div class="card blog-post">
-                    <div class="blog-banner" style="background-image: url('https://cdn.discordapp.com/attachments/1232790006506979362/1326532807270469653/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy.jpg?ex=67806e33&is=677f1cb3&hm=71681c422f9f30b0edddaff757b02887378a10b002ce3b0b9b8f5fba2ae8a0f3&'); height: 250px; background-size: cover; position: relative;">
-                        <div class="banner-overlay position-absolute w-100 h-100" style="background: rgba(0,0,0,0.5);"></div>
-                        <div class="banner-content position-absolute bottom-0 p-3 text-white w-100">
-                            <h5 class="mb-0">İkinci Blog!</h5>
-                            <small>09/01/2025</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">İkinci blogu buradan okuyabilirsiniz!</p>
-                        <a href="blog2.html" class="btn btn-primary">Devamını Oku</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Post 3 -->
-            <div class="col-md-4 mb-4">
-                <div class="card blog-post">
-                    <div class="blog-banner" style="background-image: url('https://cdn.discordapp.com/attachments/1232790006506979362/1326532807270469653/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy.jpg?ex=67806e33&is=677f1cb3&hm=71681c422f9f30b0edddaff757b02887378a10b002ce3b0b9b8f5fba2ae8a0f3&'); height: 250px; background-size: cover; position: relative;">
-                        <div class="banner-overlay position-absolute w-100 h-100" style="background: rgba(0,0,0,0.5);"></div>
-                        <div class="banner-content position-absolute bottom-0 p-3 text-white w-100">
-                            <h5 class="mb-0">Üçüncü Blog!</h5>
-                            <small>09/01/2025</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Üçüncü blogu buradan okuyabilirsiniz!</p>
-                        <a href="blog3.html" class="btn btn-primary">Devamını Oku</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Post 4 -->
-            <div class="col-md-4 mb-4">
-                <div class="card blog-post">
-                    <div class="blog-banner" style="background-image: url('https://cdn.discordapp.com/attachments/1232790006506979362/1326532807270469653/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy.jpg?ex=67806e33&is=677f1cb3&hm=71681c422f9f30b0edddaff757b02887378a10b002ce3b0b9b8f5fba2ae8a0f3&'); height: 250px; background-size: cover; position: relative;">
-                        <div class="banner-overlay position-absolute w-100 h-100" style="background: rgba(0,0,0,0.5);"></div>
-                        <div class="banner-content position-absolute bottom-0 p-3 text-white w-100">
-                            <h5 class="mb-0">Dördüncü Blog!</h5>
-                            <small>09/01/2025</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Dördüncü blogu buradan okuyabilirsiniz!</p>
-                        <a href="blog4.html" class="btn btn-primary">Devamını Oku</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Post 5 -->
-            <div class="col-md-4 mb-4">
-                <div class="card blog-post">
-                    <div class="blog-banner" style="background-image: url('https://cdn.discordapp.com/attachments/1232790006506979362/1326532807270469653/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy.jpg?ex=67806e33&is=677f1cb3&hm=71681c422f9f30b0edddaff757b02887378a10b002ce3b0b9b8f5fba2ae8a0f3&'); height: 250px; background-size: cover; position: relative;">
-                        <div class="banner-overlay position-absolute w-100 h-100" style="background: rgba(0,0,0,0.5);"></div>
-                        <div class="banner-content position-absolute bottom-0 p-3 text-white w-100">
-                            <h5 class="mb-0">Beşinci Blog!</h5>
-                            <small>09/01/2025</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Beşinci blogu buradan okuyabilirsiniz!</p>
-                        <a href="blog5.html" class="btn btn-primary">Devamını Oku</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Blog Post 6 -->
-            <div class="col-md-4 mb-4">
-                <div class="card blog-post">
-                    <div class="blog-banner" style="background-image: url('https://cdn.discordapp.com/attachments/1232790006506979362/1326532807270469653/anime_girl_looks_the_dark_sky_and_image_has_text_bedosnowy.jpg?ex=67806e33&is=677f1cb3&hm=71681c422f9f30b0edddaff757b02887378a10b002ce3b0b9b8f5fba2ae8a0f3&'); height: 250px; background-size: cover; position: relative;">
-                        <div class="banner-overlay position-absolute w-100 h-100" style="background: rgba(0,0,0,0.5);"></div>
-                        <div class="banner-content position-absolute bottom-0 p-3 text-white w-100">
-                            <h5 class="mb-0">Altıncı Blog!</h5>
-                            <small>09/01/2025</small>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Altıncı blogu buradan okuyabilirsiniz!</p>
-                        <a href="blog6.html" class="btn btn-primary">Devamını Oku</a>
-                    </div>
-                </div>
-            </div>
+    <div class="hero-section">
+        <h1 class="welcome-text">Anime Galerisine Hoşgeldiniz</h1>
+        <p class="welcome-subtext">Navbardan kategori seçebilirsiniz</p>
+        <div class="cta-buttons">
+            <a href="gallery.html" class="cta-button">
+                <i class="fas fa-images"></i> Galeriye Git
+            </a>
         </div>
     </div>
-</section>
 
-
-    <footer class="bg-dark py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <h5 class="text-white mb-3">Tech Blogs</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">Web Development</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">AI & Machine Learning</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">Cloud Computing</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Cybersecurity</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5 class="text-white mb-3">Programming</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">JavaScript</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">Python</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">React</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Node.js</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5 class="text-white mb-3">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">Portfolio</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">Projects</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-light">Resources</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Tutorials</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5 class="text-white mb-3">Latest Posts</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <a href="#" class="text-decoration-none text-light">
-                                <small class="d-block text-muted">June 15, 2023</small>
-                                Future of Web Development
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-decoration-none text-light">
-                                <small class="d-block text-muted">May 30, 2023</small>
-                                AI in Modern Tech
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-decoration-none text-light">
-                                <small class="d-block text-muted">May 15, 2023</small>
-                                Cloud Trends 2023
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="bg-light my-4">
-            <div class="text-center">
-                <p class="text-muted mb-0">&copy; 2025 BedoSnowy. All Rights Reserved.</p>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2025 Bedo x Berk | Nekos Best API kullanılarak yapılmıştır. Gallerydeki görseller nekos.best API'sinden alınmıştır. Site apiyi kullanarak görsellere bakmak için yapılmıştır.</p>
     </footer>
 
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Particle Background Configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#bb86fc' }, // Purple-ish color for dark mode
-                shape: { type: 'circle' },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                line_linked: { 
-                    enable: true, 
-                    distance: 150, 
-                    color: '#bb86fc', 
-                    opacity: 0.4, 
-                    width: 1 
-                },
-                move: { enable: true, speed: 6, direction: 'none', random: false }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'repulse' } }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const starsContainer = document.getElementById('starsContainer');
+            const announcement = document.getElementById('announcement');
+            const categoryDropdown = document.getElementById('categoryDropdown');
+            const categoryMenu = document.getElementById('categoryMenu');
+            
+            // Create stars
+            createStars();
+            
+            // Announcement messages
+            const announcements = [
+                'API ile Harika Anime Görselleri',
+                'Kategorilerden seçim yaparak keşfet!',
+                'Resimleri büyütmek için tıkla',
+                'İstediğin görseli kolayca indir',
+                'Tüm anime kategorilerine erişebilirsin'
+            ];
+            
+            // Announcement rotation
+            let currentAnnouncementIndex = 0;
+            
+            function changeAnnouncement() {
+                announcement.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    currentAnnouncementIndex = (currentAnnouncementIndex + 1) % announcements.length;
+                    announcement.textContent = announcements[currentAnnouncementIndex];
+                    announcement.classList.remove('fade-out');
+                    announcement.classList.add('fade-in');
+                    
+                    setTimeout(() => {
+                        announcement.classList.remove('fade-in');
+                    }, 500);
+                }, 500);
             }
+            
+            // Start announcement rotation
+            setInterval(changeAnnouncement, 10000);
+            
+            // Create stars function
+            function createStars() {
+                // Clear any existing stars
+                starsContainer.innerHTML = '';
+                
+                // Number of stars
+                const numberOfStars = 100;
+                
+                for (let i = 0; i < numberOfStars; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    
+                    // Random position
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    
+                    // Random size for stars (1-3px)
+                    const size = 1 + Math.random() * 2;
+                    
+                    // Random animation duration and delay
+                    const duration = 5 + Math.random() * 10 + 's';
+                    const delay = Math.random() * 5 + 's';
+                    
+                    // Set styles
+                    star.style.left = `${left}%`;
+                    star.style.top = `${top}%`;
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.setProperty('--duration', duration);
+                    star.style.setProperty('--delay', delay);
+                    
+                    // Add to container
+                    starsContainer.appendChild(star);
+                }
+            }
+            
+            // All available categories from Nekos Best API
+            const allCategories = [
+                'neko', 'waifu', 'kitsune', 'husbando', 'baka', 'bite', 'blush', 'bored', 
+                'cry', 'cuddle', 'dance', 'facepalm', 'feed', 'handhold', 'happy', 'highfive', 
+                'hug', 'kick', 'kiss', 'laugh', 'pat', 'poke', 'pout', 'punch', 'shoot', 
+                'shrug', 'slap', 'sleep', 'smile', 'smug', 'stare', 'think', 'thumbsup', 'tickle', 
+                'wave', 'wink', 'yeet'
+            ];
+            
+            // Category names in Turkish for display
+            const categoryNames = {
+                'neko': 'Neko',
+                'waifu': 'Waifu',
+                'kitsune': 'Kitsune',
+                'husbando': 'Husbando',
+                'baka': 'Baka',
+                'bite': 'Isırma',
+                'blush': 'Utanma',
+                'bored': 'Sıkılma',
+                'cry': 'Ağlama',
+                'cuddle': 'Sarılma',
+                'dance': 'Dans',
+                'facepalm': 'Yüz Palmi',
+                'feed': 'Besleme',
+                'handhold': 'El Tutma',
+                'happy': 'Mutlu',
+                'highfive': 'Çak',
+                'hug': 'Sarılma',
+                'kick': 'Tekme',
+                'kiss': 'Öpücük',
+                'laugh': 'Gülme',
+                'pat': 'Okşama',
+                'poke': 'Dürtme',
+                'pout': 'Somurtma',
+                'punch': 'Yumruk',
+                'shoot': 'Ateş Etme',
+                'shrug': 'Omuz Silkme',
+                'slap': 'Tokat',
+                'sleep': 'Uyku',
+                'smile': 'Gülümseme',
+                'smug': 'Kendini Beğenmiş',
+                'stare': 'Bakış',
+                'think': 'Düşünme',
+                'thumbsup': 'Başparmak',
+                'tickle': 'Gıdıklama',
+                'wave': 'El Sallama',
+                'wink': 'Göz Kırpma',
+                'yeet': 'Yeet'
+            };
+            
+            // Populate dropdown menu with categories
+            function populateCategoryDropdown() {
+                categoryMenu.innerHTML = '';
+                
+                // Add header
+                const header = document.createElement('div');
+                header.className = 'dropdown-header';
+                header.textContent = 'Anime Kategorileri';
+                categoryMenu.appendChild(header);
+                
+                // Add emotion categories
+                allCategories.forEach(category => {
+                    const item = document.createElement('button');
+                    item.className = 'dropdown-item';
+                    item.textContent = categoryNames[category] || category;
+                    item.dataset.category = category;
+                    
+                    item.addEventListener('click', () => {
+                        redirectToGallery(category);
+                        toggleDropdown(false);
+                    });
+                    
+                    categoryMenu.appendChild(item);
+                });
+            }
+            
+            function toggleDropdown(force) {
+                const isOpen = categoryMenu.classList.contains('show');
+                
+                if (force !== undefined) {
+                    if (force) {
+                        categoryMenu.classList.add('show');
+                        categoryDropdown.classList.add('active');
+                    } else {
+                        categoryMenu.classList.remove('show');
+                        categoryDropdown.classList.remove('active');
+                    }
+                } else {
+                    categoryMenu.classList.toggle('show');
+                    categoryDropdown.classList.toggle('active');
+                }
+            }
+            
+            // Redirect to gallery with selected category
+            function redirectToGallery(category) {
+                window.location.href = `gallery.html?category=${category}`;
+            }
+            
+            // Category dropdown toggle
+            categoryDropdown.addEventListener('click', () => {
+                toggleDropdown();
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!categoryDropdown.contains(e.target) && !categoryMenu.contains(e.target)) {
+                    toggleDropdown(false);
+                }
+            });
+            
+            // Resize event to recreate stars
+            window.addEventListener('resize', createStars);
+            
+            // Initialize dropdown
+            populateCategoryDropdown();
         });
     </script>
 </body>
